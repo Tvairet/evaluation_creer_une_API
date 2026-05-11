@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier l'utilisateur</title>
+</head>
+<body>
+  <h1>Modifier l'utilisateur</h1>
+  <form id="editForm">
+    <label>Nom :
+      <input type="text" name="nom" value="<%= user.nom %>">
+    </label>
+    <br>
+    <label>Email :
+      <input type="email" name="email" value="<%= user.email %>">
+    </label>
+    <br>
+    <label>Âge :
+      <input type="number" name="age" value="<%= user.age %>">
+    </label>
+    <br>
+    <button type="submit">Enregistrer</button>
+  </form>
+  <script>
+    const form = document.getElementById('editForm');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        nom: form.nom.value,
+        email: form.email.value,
+        age: form.age.value
+      };
+
+      const response = await fetch('/api/users/<%= user.id %>', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+      window.location.href = '/'; // route qui rend index.ejs
+    }
+    });
+  </script>
+</body>
+</html>
