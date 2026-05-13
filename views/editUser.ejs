@@ -6,7 +6,7 @@
 </head>
 <body>
   <h1>Modifier l'utilisateur</h1>
-  <form id="editForm">
+  <form id="editFormUser">
     <label>Nom :
       <input type="text" name="nom" value="<%= user.nom %>">
     </label>
@@ -22,7 +22,7 @@
     <button type="submit">Enregistrer</button>
   </form>
   <script>
-    const form = document.getElementById('editForm');
+    const form = document.getElementById('editFormUser');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
