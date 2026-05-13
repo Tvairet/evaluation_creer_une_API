@@ -3,7 +3,7 @@ const catwayService = require('../services/catwayService');
 //afficher tous les catways
 exports.getAllCatways = async (req, res) => {
     try {
-        const catway = await catwayService.getAllCatways();
+        const catways = await catwayService.getAllCatways();
         if (!catways || catways.length === 0) {
             return res.status(404).json({
                 message: "Aucun catway trouvé"

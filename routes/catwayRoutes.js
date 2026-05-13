@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const catwayController = require('../controllers/catwayController');
+const catwayService = require('../services/catwayService')
 
 router.get('/', catwayController.getAllCatways);
 router.post('/', catwayController.createCatway);
