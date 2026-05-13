@@ -1,5 +1,6 @@
 const userService = require("../services/userService");
 
+
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await userService.getAllUsers();
@@ -82,3 +83,4 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: "Erreur serveur", error: err.message });
     }
 };
+

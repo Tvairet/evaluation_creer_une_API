@@ -12,7 +12,7 @@
       <tr>
         <th>Nom</th>
         <th>Email</th>
-        <th>Âge</th>
+        <th>Mot de passe</th>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
         <tr>
           <td><%= user.nom %></td>
           <td><%= user.email %></td>
-          <td><%= user.age %></td>
+          <td><%= user.password %></td>
           <td><a href="/users/<%= user.id %>/edit"><button>Modifier</button></a></td>
         </tr>
       <% }); %>

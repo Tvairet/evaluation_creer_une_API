@@ -4,12 +4,14 @@ const mongoose = require('mongoose');
 const app = express();
 const indexRouter = require("./routes/indexRoutes");
 const userRoutes = require('./routes/userRoutes');
-// Déclaration du motreur de template et du dossier des views
+
+// Déclaration du moteur de template et du dossier des views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 // Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/', { //ou mongodb+srv://alainwebdev:<db_password>@essai.mnphttb.mongodb.net/?appName=essai
+mongoose.connect('mongodb://localhost:27017/', {
   useUnifiedTopology: true,
 })
 .then(() => console.log('Connecté à MongoDB'))
