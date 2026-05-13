@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Modifier le catway</title>
+</head>
+<body>
+  <h1>Modifier le catway</h1>
+  <form id="editFormCatway">
+    <label>Numéro :
+      <input type="number" name="numero" value="<%= catway.numero %>">
+    </label>
+    <br>
+    <label>Type :
+      <input type="text" name="type" value="<%= catway.type %>">
+    </label>
+    <br>
+    <label>Etat :
+      <input type="text" name="etat" value="<%= catway.etat %>">
+    </label>
+    <br>
+    <button type="submit">Enregistrer</button>
+  </form>
+  <script>
+    const form = document.getElementById('editFormCatway');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        numéro: form.numero.value,
+        type: form.type.value,
+        etat: form.etat.value
+      };
+
+      const response = await fetch('/api/catway/<%= catway.id %>', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+      window.location.href = '/'; // route qui rend index.ejs
+    }
+    });
+  </script>
+</body>
+</html>
