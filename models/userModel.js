@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');  // pour le chiffrage du mot de passe
 
 const userSchema = new mongoose.Schema({
-  nom: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true}
+  nom: { type: String, required: true, trim: true },
+  email: { type: String, required: true, unique: true, trim: true },
+  password: { type: String, required: true, trim: true },
+  role: { type: String, enum: ['admin', 'user'], default: 'user' }
 }, 
   {timestamps: true} // ➜ ajoute automatiquement createdAt et updatedAt}
 );

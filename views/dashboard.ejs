@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de Bord</title>
+  <link rel="stylesheet" href="/assets/css/index.css">
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/">Accueil</a>
+      <a class="nav-item nav-link" href="/users">Utilisateurs</a>
+      <a class="nav-item nav-link" href="/reservations">Réservations</a>
+      <a class="nav-item nav-link" href="/catways">Catways</a>
+      <a class="nav-item nav-link" href="/dashboard">Tableau de bord</a>
+    </div>
+  </div>
+</nav>
+  </header>
+  <h1>Tableau de Bord</h1>
+    <form action="/users" method="post" name="addUser">
+        <fieldset>
+            <legend>Créer un utilisteur</legend>
+            <label for="name">Nom</label>
+            <input type="text" name="nom" required: true>
+            <label for="email">Email</label>
+            <input type="email" name="email" required: true>
+            <label for="password">Password</label>
+            <input type="password" name="password" required: true>
+            <button type="submit" style="margin-left: 1+'rem'">Créer utilisateur</button>
+        </fieldset>
+    </form>
+    <form action="/dasboard" method="get" name="updatedUser">
+        <fieldset>
+            <legend>Modifier un utilisateur</legend>
+            <label for="user">Utilisateur à modifier</label>
+            <select name="user" id="user-select">
+                <% users.forEach(user => { %>
+                    <%= user.nom %>
+                    <button type="submit" style="margin-left: 1+'rem'">Modifier l'utilisateur</button>           
+      <% }); %>
+            </select>
+        </fieldset>
+    </form>
+</body>
+</html>

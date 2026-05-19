@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Liste des catways</title>
+  <title>Liste des réservations</title>
   <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 <body>
@@ -14,28 +14,32 @@
       <a class="nav-item nav-link active" href="/">Accueil</a>
       <a class="nav-item nav-link" href="/users">Utilisateurs</a>
       <a class="nav-item nav-link" href="reservations">Réservations</a>
-      <a class="nav-item nav-link" href="catways">Catways</a>
+      <a class="nav-item nav-link" href="/catways">Catways</a>
       <a class="nav-item nav-link" href="#">Tableau de bord</a>
     </div>
   </div>
 </nav>
   </header>
-  <h1>Liste des catways</h1>
+  <h1>Liste des réservations</h1>
   <table>
     <thead>
       <tr>
         <th>Numéro du catway</th>
-        <th>Type de catway</th>
-        <th>Etat du catway</th>
+        <th>Nom du client</th>
+        <th>Nom du bateau</th>
+        <th>Date de début</th>
+        <th>Date de fin</th>
       </tr>
     </thead>
     <tbody>
-      <% catways.forEach(catway => { %>
+      <% reservations.forEach(reservation => { %>
         <tr>
-          <td><%= catway.catwayNumber %></td>
-          <td><%= catway.catwayType %></td>
-          <td><%= catway.catwayState %></td>
-          <td><a href="/catways/<%= catway.id %>/edit"><button>Modifier</button></a></td>
+          <td><%= reservation.catwayNumber %></td>
+          <td><%= reservation.clientName %></td>
+          <td><%= reservation.boatName %></td>
+          <td><%= reservation.startDate %></td>
+          <td><%= reservation.endDate %></td>
+          <td><a href="/reservations/<%= reservation.id %>/edit"><button>Modifier</button></a></td>
         </tr>
       <% }); %>
     </tbody>

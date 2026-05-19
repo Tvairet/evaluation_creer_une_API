@@ -33,7 +33,7 @@
         etat: form.etat.value
       };
 
-      const response = await fetch('/api/catway/<%= catway.id %>', {
+      const response = await fetch('/api/catways/<%= catway.id %>', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

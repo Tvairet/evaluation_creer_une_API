@@ -41,9 +41,17 @@ exports.createUser = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const user = await userService.updateUser(req.params.id, req.body);
-        if (!user)
+        if (!user) {
+            Object.keys(user),forEach((key) => {
+                if (!!user[key]) {
+                    user[key] = user[key];
+                }               
+            });
+            await user.save();
+            return res.status(201).json(user);
+        }
             return res.status(404).json({ message: "Utilisateur introuvable" });
-        return res.json(user);
+        
     } catch (error) {
         res.status(500).json({ message: "Erreur serveur", error: err.message });
     }
@@ -84,3 +92,48 @@ exports.deleteUser = async (req, res) => {
     }
 };
 
+// authentufuer un utilisateur
+exports.authenticate = async (req, res, next) => {
+    const { email, password } = req.body;
+
+    try {
+        let user = await User.findOne({ email: email }, '-__v -createdAt -updateAt');
+
+        let hashedPass = bcrypt.hashSync(password, 10);
+
+        if (user) {
+            bcrypt.compare(password, user.password, function(err, response) {
+                if (err) {
+                    throw new Error(err);
+                }
+                if (response) {
+                    delete user._doc.password;
+
+                    const expireIn = 24*60*60*60;
+                    const token = jwt.sign({
+                        user: user
+                    },
+                    process.env.SECRET_KEY,
+                    {
+                        expiresIn: expireIn
+                    });
+
+                    res.cookie('token', token, {
+                        httpOnly: true,
+                        maxAge: expireIn
+                    });
+
+                    res.header('Authorization', 'Bearer ' + token);
+                    //res.status(200).json('authenticate_succeed');
+                    return res.redirect('/board');
+                }
+
+                return res.status(403).json('wrong_credentials');
+            });
+        } else {
+            return res.status(404).json('Utilisateur non trouvé');
+        }
+    } catch (error) {
+        return res.status(501).json(error);
+    }
+}
