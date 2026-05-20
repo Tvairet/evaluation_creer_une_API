@@ -3,27 +3,28 @@ const router = express.Router();
 
 const dashboardService = require('../services/dashboardService');
 
-const private = require('../middlewares/private');
+const checkJWT = require('../middlewares/private');
 
-router.get('/', private.checkJWT, service.dashboard);
+router.get('/dashboard', dashboardService.dashboard);
 
-router.post('/updateUser', private.checkJWT, dashboardService.updateUser);
+router.post('/updateUser', dashboardService.updateUser);
 
-router.post('/patchUser/:id', private.checkJWT, dashboardService.updateUserById);
+router.post('/patchUser/:id', dashboardService.patchUser);
 
-router.get('/deleteUser/', private.checkJWT, dashboardService.deleteUser);
+router.get('/deleteUser/', dashboardService.deleteUser);
 
-router.get('/updateCatway/:id', private.checkJWT, dashboardService.updateCatway);
+router.get('/updateCatway/:id', dashboardService.updateCatway);
 
-router.post('/updateCatwayById/:id', private.checkJWT, dashboardService.updateCatwayById);
+router.post('/updateCatwayById/:id', dashboardService.updateCatwayById);
 
-router.get('/deleteCatway/:id', private.checkJWT, dashboardService.deleteCatway);
+router.get('/deleteCatway/:id', dashboardService.deleteCatway);
 
-router.post('/addReservation', private.checkJWT, dashboardService.addBooking);
+router.post('/dashboard/createReservation', dashboardService.createReservation);
 
-router.get('/getReservationById/:id', private.checkJWT, dashboardService.getBookingInfo);
+router.get('/getReservationById/:id', dashboardService.getReservationById);
 
-router.get('/deleteReservation/:id', private.checkJWT, dashboardService.deleteBooking);
+router.get('/deleteReservation/:id', dashboardService.deleteReservation);
 
 module.exports = router;
+
 

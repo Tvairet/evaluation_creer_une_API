@@ -1,8 +1,8 @@
 const { body, validationResult } = require('express-validator');
 
 const User = require('../models/userModel');
-const catways = require('../models/catwayModel');
-const reservations = require('../models/reservationModel');
+const Catways = require('../models/catwayModel');
+const Reservations = require('../models/reservationModel');
 const { render } = require('pug');
 
 
@@ -11,9 +11,9 @@ const { render } = require('pug');
 exports.dashboard = async (req, res, next) => {
     try {
         const users = await User.find({});
-        const catways = await catwayatway.find({});
-        const reservations = await reservation.find({});
-        const catwayId = await catway.findOne({});
+        const catways = await Catways.find({});
+        const reservations = await Reservations.find({});
+        const catwayId = await Catways.findOne({});
         return res.render('dashboard', { 
             title: 'Tableau de bord', 
             users: users,
@@ -55,7 +55,7 @@ exports.patchUser = (id, data) => {
       }
   
       // Patch request avec token et gestion de l'erreur
-      fetch(`http://${process.env.dev.API_URL}/users/${id}`, {
+      fetch(`http://${process.env.API_URL}/users/${id}`, {
         method: "PATCH",
         headers: {
           'authorization': `Bearer ${token}`, // Inclusion dans le header
@@ -95,7 +95,7 @@ exports.deleteUser = async (req, res, next) => {
         };
 
         // Delete request avec token et gestion de l'erreur
-        fetch(`http://${process.env.dev.API_URL}/users/${userId}`, {
+        fetch(`http://${process.env.API_URL}/users/${userId}`, {
           method: "DELETE",
           headers: {
             'authorization': `Bearer ${token}`, // Inclusion dans le header
@@ -152,7 +152,7 @@ exports.updateCatwayById = async (req, res, next) => {
     }
 
     // Patch request avec token et gestion de l'erreur
-    fetch(`http://${process.env.dev.API_URL}/catways/${id}`, {
+    fetch(`http://${process.env.API_URL}/catways/${id}`, {
       method: "PATCH",
       headers: {
         'authorization': `Bearer ${token}`, // Inclusion dans le header
@@ -191,7 +191,7 @@ exports.deleteCatway = async (req, res, next) => {
       };
 
       // Delete request avec token et gestion de l'erreur
-      fetch(`http://${process.env.dev.API_URL}catways/${id}`, {
+      fetch(`http://${process.env.API_URL}catways/${id}`, {
         method: "DELETE",
         headers: {
           'authorization': `Bearer ${token}`, // Inclusion dans le header
@@ -217,7 +217,7 @@ exports.deleteCatway = async (req, res, next) => {
   };
 
 /** Ajoute une réservation.*/
-  exports.createReservation = (data) => {
+  exports.createReservation = async (req, res, next) => {
     try {
       const catway = JSON.parse(req.body.catwayNumber);
 
@@ -244,7 +244,7 @@ exports.deleteCatway = async (req, res, next) => {
         body: urlencoded
       };
 
-      await fetch(`http://${process.env.dev.API_URL}/catways/${catway._id}/reservations`, 
+      await fetch(`http://${process.env.API_URL}/catways/${catway._id}/reservation`, 
         requestOptions)
         .then(response => {
           if (response.ok) {
@@ -295,7 +295,7 @@ exports.deleteReservation = async (req, res, next) => {
       };
 
       // Delete request avec token et gestion de l'erreur
-      fetch(`http://${process.env.dev.API_URL}/catways/${catway._id}/reservations/${id}`, {
+      fetch(`http://${process.env.API_URL}/catways/${catway._id}/reservations/${id}`, {
         method: "DELETE",
         headers: {
           'authorization': `Bearer ${token}`, // Inclusion dans le header

@@ -11,12 +11,12 @@ const userSchema = new mongoose.Schema({
 );
 
 // Hash le mot de passe
-userSchema.pre('save', function(next) {
-  if (!this.isModified('password')) {
-    return next();
-  }
-  this.password = bcrypt.hashSync(this.password, 10);
-  next();
-});
+//userSchema.pre('save', function(next) {
+//  if (!this.isModified('password')) {
+//    return next();
+//  }
+//  this.password = bcrypt.hashSync(this.password, 10);
+// next();
+//});
 
 module.exports = mongoose.model('User', userSchema);

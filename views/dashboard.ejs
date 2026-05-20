@@ -39,11 +39,66 @@
             <label for="user">Utilisateur à modifier</label>
             <select name="user" id="user-select">
                 <% users.forEach(user => { %>
-                    <%= user.nom %>
-                    <button type="submit" style="margin-left: 1+'rem'">Modifier l'utilisateur</button>           
+                    <option value="username"><%= user.nom %></option>                              
       <% }); %>
             </select>
+            <button type="submit" style="margin-left: 1+'rem'">Modifier l'utilisateur</button>
         </fieldset>
     </form>
+    <form action="/dashboard/deleteUser" method="get" name="deletedUser">
+        <fieldset>
+            <legend>Supprimer un utilisateur</legend>
+            <label for="user">Utilisateur à supprimer</label>
+            <select name="user" id="user-select">
+               <% users.forEach(user => { %>
+                    <option value="username"><%= user.nom %></option>                              
+      <% }); %> 
+            </select>
+                <button type="submit" style="margin-left: 1+'rem'">Supprimer l'utilisateur</button>
+        </fieldset>
+    </form>
+    <form action="/catways" method="post" name="addCatway">
+        <fieldset>
+            <legend>Créer un catway</legend>
+            <label for="catwayNumber">Numéro du catway</label>
+            <input type="number" name="catwayNumber" required>
+            <label for="type">Type du catway</label>
+            <input type="text" name="type" required>
+            <label for="catwayState">Etat du catway</label>
+            <input type="text" name="catwayState">
+            <button type="submit" style="margin-left: 1+'rem'">Créer le catway</button>
+        </fieldset>
+    </form>
+    <legend>Les catways</legend>
+    <button>
+        <a href="/catways">Voir tous les catways</a>
+    </button>
+    <form action="/dashboard/createReservation" method="post" name="createReservation">
+        <legend>Créer une réservation</legend>
+        <label for="catwayNumber">Numéro du catway</label>
+        <select name="catwayNumber" id="catway-select">
+            <% catways.forEach(catway => { %>
+          <option><%= catway.catwayNumber %></option>
+      <% }); %>
+        </select>
+        <label for="reservationID">Numéro de réservation</label>
+        <input type="text" name="reservationId" required>
+        <label for="clientName">Nom du client</label>
+        <select name="clientName" id="client-select">
+            <% users.forEach(user => { %>
+                    <option value="userName"><%= user.nom %></option>                              
+      <% }); %>
+        </select>
+        <label for="boatName">Nom du bateau</label>
+        <input type="text" name="boatName" required>
+        <br>
+        <label for="startDate">Date d'entrée</label>
+        <input type="date" name="startDate" required>
+        <label for="endDate">Date de sortie</label>
+        <input type="date" name="endDate" required>
+        <button type="submit">Créer la réservation</button>   
+    </form>
+    <span>Liste des réservations</span>
+    <a href="/reservations">Toutes les réservations</a>
 </body>
 </html>

@@ -50,6 +50,9 @@ router.get('/reservations', async (req, res) => {
 }
 });
 
+// Page dashboard
+router.get('/dashboard', dashboardRoutes);
+
 // Formulaire d'édition
 router.get('/:id/edit', userController.renderEditForm);
 router.get('/catways/:id/edit', catwayController.renderEditForm);
@@ -58,6 +61,6 @@ router.get('/reservations/:id/edit', reservationController.renderEditForm);
 router.use('/api/users', userRoutes);
 router.use('/api/catways', catwayRoutes);
 router.use('/api/reservations', reservationRoutes);
-router.use('/tableau-de-bord', dashboardRoutes);
+
 
 module.exports = router;
