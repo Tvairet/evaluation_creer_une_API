@@ -81,4 +81,6 @@ http://localhost:3000/api/catways/(id du catway)
 http://localhost:3000/api/reservations/(id de la reservation)
 http://localhost:3000/api/users/(id de l'utilisateur)
 
+Afin de tester l'application, se rendre sur un navigateur et rentrer comme adresse : 
+http://localhost:3000/
 
