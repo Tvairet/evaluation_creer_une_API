@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const app = express();
 const indexRouter = require("./routes/indexRoutes");
 const userRoutes = require('./routes/userRoutes');
+const catwayRouter = require('./routes/catwayRoutes');
+const reservationRouter = require('./routes/reservationRoutes')
+
 
 // Déclaration du moteur de template et du dossier des views
 app.set('view engine', 'ejs');
@@ -12,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Connexion à MongoDB
 mongoose.connect('mongodb://localhost:27017/', {
-  useUnifiedTopology: true,
+  //useUnifiedTopology: true,
 })
 .then(() => console.log('Connecté à MongoDB'))
 .catch((err) => console.error('Erreur MongoDB :', err));
@@ -32,6 +35,7 @@ app.use(express.static('public'));
 
 app.use("/", indexRouter);
 app.use("/users", indexRouter);   // pour les vues frontend
+app.use("/catways",catwayRouter)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Le serveur tourne sur le port ${PORT}`));

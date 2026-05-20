@@ -8,7 +8,7 @@
   <h1>Modifier la réservation</h1>
   <form id="editFormReservation">
     <label>Numéro :
-      <input type="number" name="numero" value="<%= catway.numero %>">
+      <input type="number" name="number" value="<%= reservation.number %>">
     </label>
     <br>
     <label>Client :
@@ -36,14 +36,14 @@
       e.preventDefault();
 
       const data = {
-        numéro: form.numero.value,
+        numéro: form.number.value,
         client: form.client.value,
         bateau: form.bateau.value,
         startDate: form.startDate.value,
         endDate: form.endDate.value
       };
 
-      const response = await fetch('/api/reservation/<%= reservation.id %>', {
+      const response = await fetch('/api/reservations/<%= reservation.id %>', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

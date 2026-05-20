@@ -2,29 +2,45 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Liste des utilisateurs</title>
+  <title>Port Russel</title>
   <link rel="stylesheet" href="/assets/css/index.css">
 </head>
 <body>
-  <h1>Liste des utilisateurs</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Email</th>
-        <th>Mot de passe</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% users.forEach(user => { %>
-        <tr>
-          <td><%= user.nom %></td>
-          <td><%= user.email %></td>
-          <td><%= user.password %></td>
-          <td><a href="/users/<%= user.id %>/edit"><button>Modifier</button></a></td>
-        </tr>
-      <% }); %>
-    </tbody>
-  </table>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Accueil</a>
+      <a class="nav-item nav-link" href="/users">Utilisateurs</a>
+      <a class="nav-item nav-link" href="/reservations">Réservations</a>
+      <a class="nav-item nav-link" href="/catways">Catways</a>
+      <a class="nav-item nav-link" href="/dashboard">Tableau de bord</a>
+    </div>
+  </div>
+</nav>
+  </header>
+  <h1>Bienvenue au Port Russel</h1>
+  <section class="presentation">
+    <p>Bienvenue sur l'application de réservation des catways du port Russel.
+       La capitainerie pourra gérer les catways ( états, créations, suppression) 
+       ainsi que la gestion des utilisateurs ( création, suppression, listing) et également gérer les réservations (création, suppression, modification, listing).
+    </p>
+  </section>
+  <section>
+    <form method="POST" action="/auth/login" class="card p-4 shadow-sm mt-4">
+    <div class="mb-3">
+      <label for="email" class="form-label">Adresse email</label>
+      <input type="email" class="form-control" name="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" name="password" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+  </form>
+  </section>
 </body>
 </html>

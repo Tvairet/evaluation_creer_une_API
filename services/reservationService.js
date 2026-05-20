@@ -1,6 +1,6 @@
 const Reservation = require('../models/reservationModel');
 
-exports.getAllReservation = () => {
+exports.getAllReservations = () => {
   return Reservation.find();
 };
 

@@ -10,7 +10,5 @@ router.put('/:id', userController.updateUser);
 router.patch('/:id', userController.patchUser);
 router.delete('/:id', userController.deleteUser);
 
-// route d'authentification
-router.post('/authentification', userService.authentification);
 
 module.exports = router;
