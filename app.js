@@ -35,10 +35,9 @@ const authRoutes = require('./routes/authRoutes');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Connexion à MongoDB
-mongoose.connect('mongodb://localhost:27017/', {
-  //useUnifiedTopology: true,
-})
+// Connexion à MongoDB (Atlas en production via MONGO_URI, localhost par défaut en développement)
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/api_port_russel';
+mongoose.connect(MONGO_URI)
 .then(() => console.log('Connecté à MongoDB'))
 .catch((err) => console.error('Erreur MongoDB :', err));
 

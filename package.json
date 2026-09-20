@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env-cmd -f ./env/.env nodemon app.js"
-  },
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "env-cmd -f ./env/.env nodemon app.js",
+  "start": "node app.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
