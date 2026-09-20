@@ -7,24 +7,24 @@
 <body>
   <h1>Modifier la réservation</h1>
   <form id="editFormReservation">
-    <label>Numéro :
-      <input type="number" name="number" value="<%= reservation.number %>">
+    <label>Numéro de catway :
+      <input type="number" name="catwayNumber" value="<%= reservation.catwayNumber %>">
     </label>
     <br>
     <label>Client :
-      <input type="text" name="client" value="<%= reservation.client %>">
+      <input type="text" name="clientName" value="<%= reservation.clientName %>">
     </label>
     <br>
     <label>Bateau :
-      <input type="text" name="bateau" value="<%= reservation.bateau %>">
+      <input type="text" name="boatName" value="<%= reservation.boatName %>">
     </label>
     <br>
     <label>Date de début :
-      <input type="date" name="startDate" value="<%= reservation.startDate %>">
+      <input type="date" name="startDate" value="<%= reservation.startDate.toISOString().slice(0, 10) %>">
     </label>
     <br>
     <label>Date de fin :
-      <input type="date" name="endDate" value="<%= reservation.endDate %>">
+      <input type="date" name="endDate" value="<%= reservation.endDate.toISOString().slice(0, 10) %>">
     </label>
     <br>
     <button type="submit">Enregistrer</button>
@@ -36,9 +36,9 @@
       e.preventDefault();
 
       const data = {
-        numéro: form.number.value,
-        client: form.client.value,
-        bateau: form.bateau.value,
+        catwayNumber: form.catwayNumber.value,
+        clientName: form.clientName.value,
+        boatName: form.boatName.value,
         startDate: form.startDate.value,
         endDate: form.endDate.value
       };
@@ -50,8 +50,11 @@
       });
 
       if (response.ok) {
-      window.location.href = '/'; // route qui rend index.ejs
-    }
+        window.location.href = '/dashboard';
+      } else {
+        const err = await response.json();
+        alert(err.message || 'Erreur lors de la mise à jour');
+      }
     });
   </script>
 </body>

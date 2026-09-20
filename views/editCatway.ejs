@@ -8,15 +8,20 @@
   <h1>Modifier le catway</h1>
   <form id="editFormCatway">
     <label>Numéro :
-      <input type="number" name="numero" value="<%= catway.numero %>">
+      <input type="number" name="catwayNumber" value="<%= catway.catwayNumber %>" disabled>
+      <small>(le numéro ne peut pas être modifié)</small>
     </label>
     <br>
     <label>Type :
-      <input type="text" name="type" value="<%= catway.type %>">
+      <select name="catwayType">
+        <option value="long" <%= catway.catwayType === 'long' ? 'selected' : '' %>>long</option>
+        <option value="short" <%= catway.catwayType === 'short' ? 'selected' : '' %>>short</option>
+      </select>
+      <small>(le type ne peut pas être modifié)</small>
     </label>
     <br>
     <label>Etat :
-      <input type="text" name="etat" value="<%= catway.etat %>">
+      <input type="text" name="catwayState" value="<%= catway.catwayState %>">
     </label>
     <br>
     <button type="submit">Enregistrer</button>
@@ -27,10 +32,9 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+      // Seul l'état du catway est modifiable (le numéro et le type ne le sont pas)
       const data = {
-        numéro: form.numero.value,
-        type: form.type.value,
-        etat: form.etat.value
+        catwayState: form.catwayState.value
       };
 
       const response = await fetch('/api/catways/<%= catway.id %>', {
@@ -40,8 +44,8 @@
       });
 
       if (response.ok) {
-      window.location.href = '/'; // route qui rend index.ejs
-    }
+        window.location.href = '/dashboard';
+      }
     });
   </script>
 </body>
