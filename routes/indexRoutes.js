@@ -9,10 +9,12 @@ const catwayService = require('../services/catwayService');
 const reservationController = require('../controllers/reservationController');
 const reservationRoutes = require('./reservationRoutes');
 const reservationService = require('../services/reservationService');
-const dashboardRoutes = require('./dashboardRoutes')
+const dashboardRoutes = require('./dashboardRoutes');
+const checkJWT = require('../middlewares/private');
+const requireAdmin = require('../middlewares/requireAdmin');
 
 // Page utilisateurs
-router.get('/users', async (req, res) => {
+router.get('/users', checkJWT, requireAdmin, async (req, res) => {
   try {
     const users = await userService.getAllUsers();
     res.render('user', { users });
@@ -50,11 +52,11 @@ router.get('/reservations', async (req, res) => {
 }
 });
 
-// Page dashboard
-router.get('/dashboard', dashboardRoutes);
+// Routes du tableau de bord (protégées par checkJWT à l'intérieur de dashboardRoutes)
+router.use('/', dashboardRoutes);
 
 // Formulaire d'édition
-router.get('/:id/edit', userController.renderEditForm);
+router.get('/users/:id/edit', checkJWT, requireAdmin, userController.renderEditForm);
 router.get('/catways/:id/edit', catwayController.renderEditForm);
 router.get('/reservations/:id/edit', reservationController.renderEditForm);
 

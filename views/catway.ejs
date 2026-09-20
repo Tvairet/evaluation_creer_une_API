@@ -36,6 +36,11 @@
           <td><%= catway.catwayType %></td>
           <td><%= catway.catwayState %></td>
           <td><a href="/catways/<%= catway.id %>/edit"><button>Modifier</button></a></td>
+          <td>
+            <a href="/dashboard/deleteCatway/<%= catway.id %>" onclick="return confirm('Supprimer ce catway ?')">
+              <button type="button">Supprimer</button>
+            </a>
+          </td>
         </tr>
       <% }); %>
     </tbody>

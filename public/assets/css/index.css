@@ -46,3 +46,11 @@ th, td {
 th {
   background-color: #eee;
 }
+
+section {
+  background-color: white;
+  opacity: 0.9;
+  width: 100%;
+  margin-bottom: 20px;
+  color: black;
+}
