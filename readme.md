@@ -83,24 +83,6 @@ Le serveur démarre par défaut sur [http://localhost:3000]
 - Deux rôles existent :
   - `user` : peut consulter les listes, créer une réservation.
   - `admin` : a en plus accès à la création/modification/suppression des catways, des réservations, des utilisateurs, et à la liste des utilisateurs.
-- Pour créer le premier compte admin, utiliser directement l'API :
-
-```
-POST http://localhost:3000/api/users/
-Content-Type: application/json
-
-{
-  "nom": "Admin",
-  "email": "admin@port-russel.fr",
-  "password": "TEST1234",
-  "role": "admin"
-}
-{
-    "nom": "Kevin",
-    "email": "test@test.fr",
-    "password": "Test12345",
-    "role": "user"
-}
 ```
 
 (cette route de création est ensuite elle-même réservée aux admins ; le tout premier compte doit donc être créé directement en base ou avant que la protection ne soit active, puis servir à créer les comptes suivants)
